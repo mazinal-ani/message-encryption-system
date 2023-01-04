@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Home from "./home";
-import About from "./about";
-import Contact from "./contact";
-import SignUp from "./signup";
-import SignIn from "./signin";
+import About from "./encrypt";
+import Contact from "./ascii";
+import SignUp from "./signin";
+import SignIn from "./contact";
 
 function Index() {
 
   return (
     <div>
       <BrowserRouter>
-        <Navbar />
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

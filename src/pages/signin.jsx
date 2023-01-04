@@ -1,9 +1,9 @@
 import React from 'react'
 
-const signin = () => {
+const signup = () => {
   return (
-    <div></div>
+    <div>Sign in using Google Auth here.</div>
   )
 }
 
-export default signin
+export default signup

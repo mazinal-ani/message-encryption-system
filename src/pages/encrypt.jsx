@@ -2,7 +2,7 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div>Helo</div>
+    <div>Encrypt your messages here using the RSA encryption scheme.</div>
   )
 }
 

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const contact = () => {
+const signin = () => {
   return (
-    <div></div>
+    <div>Contact form for reaching the website owner.</div>
   )
 }
 
-export default contact
+export default signin

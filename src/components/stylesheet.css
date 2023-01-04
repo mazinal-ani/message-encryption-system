@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.title_text{
+    font-size: 2rem;
+    fontweight: 900;
+    line-height: 1.1;
+    align: right;
+    color: #99f;
+}
+
+.link_text{
+    color: #142F;
+}
+
+.description_text {
+    padding: 1rem;
+    font-size: 1em;
+    align: left;
+    line-height: 1.1;
+    color: #FFFFF9;
+    margin-right: 1rem;
+}

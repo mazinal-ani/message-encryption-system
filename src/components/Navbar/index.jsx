@@ -29,22 +29,22 @@ const Navbar = () => {
                         to="/about"
                         activeStyle={{ color: 'black' }}
                     >
-                        About
+                        Encryption Tool
                     </NavLink>
                     <NavLink 
                         to="/contact" 
                         activeStyle={{ color: 'black' }}
                     >
-                        Contact
+                        ASCII Conversion
                     </NavLink>
                     <NavLink
                         to="/signin"
                         activeStyle={{ color: 'black' }}
                     >
-                        Sign In
+                        Contact
                     </NavLink>
                     <NavBtn>
-                        <NavBtnLink to="/sign-up">Sign Up</NavBtnLink>
+                        <NavBtnLink to="/sign-up">Sign In</NavBtnLink>
                     </NavBtn>
                 </NavMenu>
             </Nav> 
