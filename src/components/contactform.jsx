@@ -55,8 +55,8 @@ const DataForm = () => (
             <label className='inner_field_padding'>
               Message:
             </label>
-            <Field type="text" name="name" style={{ height: 150 }} multiline={true} minRows={1} maxRows={999999} />
-            <ErrorMessage name="name" component="span" />
+            <Field type="text" name="message" style={{ height: 150 }} multiline={true} minRows={1} maxRows={999999} />
+            <ErrorMessage name="message" component="span" />
           </div>
           <div className='field_padding'>
             <label className='inner_field_padding'>Accept Terms:</label>
