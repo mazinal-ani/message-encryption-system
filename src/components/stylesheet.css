@@ -6,14 +6,27 @@
 
 .title_text{
     font-size: 2rem;
-    fontweight: 900;
     line-height: 1.1;
     align: right;
-    color: #99f;
+    color: #4adede;
+}
+
+.form_descriptions{
+    color: #39e75f;
+    font-size: 1.2rem;
 }
 
 .link_text{
-    color: #142F;
+    color: #4adede;
+}
+
+.field_padding{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.inner_field_padding{
+    margin-right: 0.5rem;
 }
 
 .description_text {
@@ -24,3 +37,25 @@
     color: #FFFFF9;
     margin-right: 1rem;
 }
+
+button {
+    border-radius: 8px;
+    border: 1px solid;
+    padding: 0.5rem 2rem;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-right: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover {
+    color: #9a9a9a;
+    border-color: #FFFFFF;
+    background-color: #FFFFFF;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }

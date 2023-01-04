@@ -26,25 +26,25 @@ const Navbar = () => {
                         Home
                     </NavLink>
                     <NavLink 
-                        to="/about"
+                        to="/encryption"
                         activeStyle={{ color: 'black' }}
                     >
                         Encryption Tool
                     </NavLink>
                     <NavLink 
-                        to="/contact" 
+                        to="/ascii" 
                         activeStyle={{ color: 'black' }}
                     >
                         ASCII Conversion
                     </NavLink>
                     <NavLink
-                        to="/signin"
+                        to="/contact"
                         activeStyle={{ color: 'black' }}
                     >
                         Contact
                     </NavLink>
                     <NavBtn>
-                        <NavBtnLink to="/sign-up">Sign In</NavBtnLink>
+                        <NavBtnLink to="/sign-in">Sign In</NavBtnLink>
                     </NavBtn>
                 </NavMenu>
             </Nav> 

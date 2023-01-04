@@ -53,6 +53,10 @@ body {
   -moz-text-fill-color: transparent;
 }
 
+.title_text {
+  margin-bottom: 1rem;
+}
+
 .description_text {
   padding: 1rem;
   font-size: 3em;
@@ -106,19 +110,26 @@ body {
   text-color: #9a9a9a;
 }
 
+.form_padding{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border: 1px solid;
+  padding: 2rem 2rem;
   font-size: 1em;
   font-weight: 500;
+  color: #FFFFFF;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  color: #9a9a9a;
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
 }
 button:focus,
 button:focus-visible {
