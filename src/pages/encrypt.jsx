@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DataForm from '../components/encryptionform'
 import DecryptDataForm from '../components/decryptionform'
 
 const EncryptionPage = () => {
+
+  const [responseData, setResponseData] = useState(null);
+
+  const handleClick = () => {
+    fetch('http://127.0.0.1:5000/make_key',{mode: 'cors'})
+      .then((response) => response.json())
+      .then((data) => {
+        setResponseData(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div>
       <div>
@@ -17,7 +31,8 @@ const EncryptionPage = () => {
       <hr className='form_padding'/>
       <div>
         <h1 className='title_text'>Public/Private Key Generator</h1>
-        <button>Generate</button>
+        <button onClick={handleClick}>Generate</button>
+        {responseData ? <p>{JSON.stringify(responseData)}</p> : null}
       </div>
       <hr className='bottom_line'/>
       <h1 className='bottom_copyright'>Made by Mazin Al-Ani, 2023. CS Student at the University of Waterloo.</h1>

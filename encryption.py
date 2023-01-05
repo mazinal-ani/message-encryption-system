@@ -1,7 +1,16 @@
 import random
 import math
 from sympy import isprime, mod_inverse
+from flask import Flask, redirect, url_for, render_template, make_response, jsonify
+from flask_cors import CORS, cross_origin
 
+app = Flask(__name__)
+
+
+CORS(app, support_credentials=True, resources={r'/make_key': {'origins': 'http://127.0.0.1:5173'}}) 
+
+@app.route("/make_key", methods=['GET'])
+@cross_origin()
 def make_key():
     
     def generate_random_prime(min_value, max_value):
@@ -38,8 +47,14 @@ def make_key():
     publicKey = str(e) + ", " + str(n)
     privateKey = str(d) + ", " + str(n)
 
-    return p
+    finalmsg = 'Public Key: ',publicKey,"\nPrivate Key: ",privateKey
+    finalmsg = jsonify(finalmsg)
 
+
+    return finalmsg
+
+
+@app.route("/encrypt")
 def encrypt(m, e, n):
 
     temp_arr = m.split()
@@ -50,6 +65,8 @@ def encrypt(m, e, n):
     encrypted = ' '.join(str(k) for k in arr)
     return encrypted
 
+
+@app.route("/decrypt")
 def decrypt(c, d, n):
 
     temp_arr = c.split()
@@ -60,6 +77,8 @@ def decrypt(c, d, n):
     decrypted = ' '.join(str(k) for k in arr)
     return decrypted
 
+
+@app.route("/textASCII")
 def textASCII(message):
     
     temp_asciichar = [ord(c) for c in message]
@@ -67,8 +86,13 @@ def textASCII(message):
     return asciichar
 
 
+@app.route("/ASCIItext")
 def ASCIItext(message):
 
     temp_textchar = [chr(c) for c in message]
     textchar = ' '.join(str(k) for k in temp_textchar)
     return textchar
+
+
+if __name__ == '__main__':
+    app.run(host='localhost', port=5000, debug=True)
