@@ -44,7 +44,7 @@ const DecryptDataForm = () => (
           </div>
           <div className='field_padding'>
             <label className='inner_field_padding' htmlFor="Message">Message:</label>
-            <Field type="text" name="Message" style={{ height: 150 }} multiline={true} minRows={1} maxRows={999999} />
+            <Field type="text" name="Message" style={{ height: 150 }}/>
             <ErrorMessage name="Message" component="span" />
           </div>
           <div className='field_padding'>

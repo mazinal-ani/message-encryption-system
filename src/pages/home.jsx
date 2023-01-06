@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { GlitchedImage } from 'react-image-glitch'
 import Typed from "react-typed";
 import "./stylesheet.css";
 import "./App.css";

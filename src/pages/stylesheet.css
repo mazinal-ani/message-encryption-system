@@ -114,6 +114,12 @@ body {
   margin-bottom: 2rem;
 }
 
+.key_text{
+  color: #39e75f;
+  margin-top:1rem;
+  margin-bottom:1rem;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid;

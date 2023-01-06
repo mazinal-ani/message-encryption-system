@@ -1,71 +1,61 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik, Formik, Form, Field, ErrorMessage } from "formik";
 import './stylesheet.css';
 
-const DataForm = () => (
-  <>
-    <h1 className='form_descriptions'>Using a Plaintext Message</h1>
-    <Formik
-      initialValues={{ publicKey: "", message: "", acceptedTerms: false }}
-      validate={(values) => {
-        const errors = {};
-        if (!values.publicKey) {
-          errors.publicKey = "Required";
-        }
 
-        if (!values.acceptedTerms) {
-          errors.acceptedTerms =
-            "You must accept the terms and conditions before you proceed.";
-        }
+const DataForm = () => {
 
-        if (!values.message) {
-          errors.message = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.message)
-        ) {
-          errors.message = "Invalid message";
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        // post data to server
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }}
-    >
-      {({ isSubmitting, dirty, handleReset }) => (
-        <Form>
-          <div className='field_padding'>
-            <label className='inner_field_padding' >
-              Public Key:
-            </label>
-            <Field type="text" name="Public Key" />
-            <ErrorMessage name="Public Key" component="span" />
-          </div>
-          <div className='field_padding'>
-            <label className='inner_field_padding' htmlFor="Message">Message:</label>
-            <Field type="text" name="Message" style={{ height: 150 }} multiline={true} minrows={1} maxrows={999999} />
-            <ErrorMessage name="Message" component="span" />
-          </div>
-          <div className='field_padding'>
-            <label className='inner_field_padding' >Accept Terms: </label>
-            <Field type="checkbox" name="acceptedTerms" />
-            <ErrorMessage name="acceptedTerms" component="span" />
-          </div>
-          <button
-            type="button"
-            onClick={handleReset}
-            disabled={!dirty || isSubmitting}
-          >
-            Reset
-          </button>
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
-        </Form>
-      )}
-    </Formik>
-  </>
-);
+  const formik = useFormik({
+    initialValues: {
+      publicKey: '',
+      message: '',
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      fetch('http://127.0.0.1:5000/encrypt', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              message: values,
+            }),
+          })
+          .then(response => console.log(JSON.stringify(response)))
+          }
+    }
+  );
 
-export default DataForm;
+  return(
+    <form onSubmit={formik.handleSubmit}>
+      <div>
+        <label htmlFor='publicKey'>
+          Public Key: 
+        </label>
+        <input 
+        id="publicKey"
+        name="publicKey"
+        type="publicKey"
+        onChange={formik.handleChange}
+        value={formik.values.publicKey}
+        />
+      </div>
+      <div>
+        <label htmlFor='message'>
+          Message: 
+        </label>
+        <input 
+        id="message"
+        name="message"
+        type="message"
+        onChange={formik.handleChange}
+        value={formik.values.message}
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default DataForm

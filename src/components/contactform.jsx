@@ -55,7 +55,7 @@ const DataForm = () => (
             <label className='inner_field_padding'>
               Message:
             </label>
-            <Field type="text" name="message" style={{ height: 150 }} multiline={true} minRows={1} maxRows={999999} />
+            <Field type="text" name="message" style={{ height: 150 }}/>
             <ErrorMessage name="message" component="span" />
           </div>
           <div className='field_padding'>

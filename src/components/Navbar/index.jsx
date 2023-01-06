@@ -21,25 +21,25 @@ const Navbar = () => {
                 <NavMenu>
                     <NavLink 
                         to="/"
-                        activeStyle={{ color:'black' }}
+                        activestyle={{ color:'black' }}
                     >
                         Home
                     </NavLink>
                     <NavLink 
                         to="/encryption"
-                        activeStyle={{ color: 'black' }}
+                        activestyle={{ color: 'black' }}
                     >
                         Encryption Tool
                     </NavLink>
                     <NavLink 
                         to="/ascii" 
-                        activeStyle={{ color: 'black' }}
+                        activestyle={{ color: 'black' }}
                     >
                         ASCII Conversion
                     </NavLink>
                     <NavLink
                         to="/contact"
-                        activeStyle={{ color: 'black' }}
+                        activestyle={{ color: 'black' }}
                     >
                         Contact
                     </NavLink>

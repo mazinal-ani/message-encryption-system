@@ -1,13 +1,12 @@
 import random
 import math
 from sympy import isprime, mod_inverse
-from flask import Flask, redirect, url_for, render_template, make_response, jsonify
+from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
-
-CORS(app, support_credentials=True, resources={r'/make_key': {'origins': 'http://127.0.0.1:5173'}}) 
+CORS(app, support_credentials=True, resources={r'/make_key': {'origins': '*'}}) 
 
 @app.route("/make_key", methods=['GET'])
 @cross_origin()
@@ -47,23 +46,30 @@ def make_key():
     publicKey = str(e) + ", " + str(n)
     privateKey = str(d) + ", " + str(n)
 
-    finalmsg = 'Public Key: ',publicKey,"\nPrivate Key: ",privateKey
+    finalmsg = 'Your Public Key is: '+publicKey+'. Your Private Key is: '+privateKey+"."
     finalmsg = jsonify(finalmsg)
 
 
     return finalmsg
 
 
-@app.route("/encrypt")
-def encrypt(m, e, n):
+@app.route("/encrypt", methods=['POST'])
+@cross_origin()
+def encrypt():
+    #public_key = request.form['public_key']
+    #message = request.form['message']
+    x = "HELLO"
+    return jsonify(x)
 
-    temp_arr = m.split()
-    arr = [eval(i) for i in temp_arr]
-    for  j in range(len(arr)):
-        raised = arr[j] ** e
-        arr[j] = raised % n
-    encrypted = ' '.join(str(k) for k in arr)
-    return encrypted
+#def encrypt(m, e, n):
+
+    #temp_arr = m.split()
+    #arr = [eval(i) for i in temp_arr]
+    #for  j in range(len(arr)):
+    #    raised = arr[j] ** e
+    #    arr[j] = raised % n
+    #encrypted = ' '.join(str(k) for k in arr)
+    #return encrypted
 
 
 @app.route("/decrypt")
