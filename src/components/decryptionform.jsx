@@ -23,6 +23,7 @@ const DecryptDataForm = () => {
             }),
           })
           .then(response => console.log(JSON.stringify(response)))
+          .then
           }
     }
   );

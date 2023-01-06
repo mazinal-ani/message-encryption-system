@@ -63,7 +63,8 @@ def encrypt():
     e = int(temp_pkey[0])
     n = int(temp_pkey[1])
     final = encrypt_handler(m, e, n)
-    print(final)
+    final = "Your Encrypted Message is: "+final+"."
+    final = jsonify(final)
     return final
 
 def encrypt_handler(m, e, n):
