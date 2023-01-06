@@ -19,7 +19,7 @@ const DataForm = () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              message: values,
+              values
             }),
           })
           .then(response => console.log(JSON.stringify(response)))

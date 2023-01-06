@@ -56,13 +56,14 @@ def make_key():
 @app.route("/encrypt", methods=['POST'])
 @cross_origin()
 def encrypt():
-    #public_key = request.form['public_key']
-    #message = request.form['message']
-    x = "HELLO"
-    print(x)
-    return x
+    data = request.get_json()
+    pkey = data['values']['publicKey']
+    msg = data['values']['message']
+    print(pkey)
+    print(msg)
+    return "Hello"
 
-#def encrypt(m, e, n):
+#de encrypt(m, e, n):
 
     #temp_arr = m.split()
     #arr = [eval(i) for i in temp_arr]
