@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import Typed from "react-typed";
 import { useFormik } from "formik";
 import './stylesheet.css';
 
@@ -59,14 +60,20 @@ const DataForm = () => {
       </div>
       <button type="submit">Submit</button>
       </form>
+      <div className='field_padding'>
       {responseData === null ? (
-        <p>Loading data...</p>
+        <Typed
+        strings={["Awaiting input..."]}
+        typeSpeed={25}
+        backSpeed={10}
+        loop/>
       ) : (
         <div>
-          <p>Here is the data:</p>
-          <pre>{JSON.stringify(responseData)}</pre>
+          <h1 className='field_padding'>Here is your encrypted message:</h1>
+          <h1 className='form_descriptions'>{responseData.replace(/"/g, '')}</h1>
         </div>
       )}
+      </div>
     </div>
   );
 };

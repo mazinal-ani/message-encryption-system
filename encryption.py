@@ -1,5 +1,6 @@
 import random
 import math
+import json
 from sympy import isprime, mod_inverse
 from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS, cross_origin
@@ -63,7 +64,6 @@ def encrypt():
     e = int(temp_pkey[0])
     n = int(temp_pkey[1])
     final = encrypt_handler(m, e, n)
-    final = "Your Encrypted Message is: "+final+"."
     final = jsonify(final)
     return final
 
