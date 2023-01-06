@@ -58,20 +58,22 @@ def make_key():
 def encrypt():
     data = request.get_json()
     pkey = data['values']['publicKey']
-    msg = data['values']['message']
-    print(pkey)
-    print(msg)
+    m = data['values']['message']
+    temp_pkey = pkey.split()
+    e = int(temp_pkey[0])
+    n = int(temp_pkey[1])
+    print(encrypt_handler(m, e, n))
     return "Hello"
 
-#de encrypt(m, e, n):
+def encrypt_handler(m, e, n):
 
-    #temp_arr = m.split()
-    #arr = [eval(i) for i in temp_arr]
-    #for  j in range(len(arr)):
-    #    raised = arr[j] ** e
-    #    arr[j] = raised % n
-    #encrypted = ' '.join(str(k) for k in arr)
-    #return encrypted
+    temp_arr = m.split()
+    arr = [eval(i) for i in temp_arr]
+    for  j in range(len(arr)):
+        raised = arr[j] ** e
+        arr[j] = raised % n
+    encrypted = ' '.join(str(k) for k in arr)
+    return encrypted
 
 
 @app.route("/decrypt")
