@@ -62,8 +62,9 @@ def encrypt():
     temp_pkey = pkey.split()
     e = int(temp_pkey[0])
     n = int(temp_pkey[1])
-    print(encrypt_handler(m, e, n))
-    return "Hello"
+    final = encrypt_handler(m, e, n)
+    print(final)
+    return final
 
 def encrypt_handler(m, e, n):
 
@@ -76,8 +77,22 @@ def encrypt_handler(m, e, n):
     return encrypted
 
 
-@app.route("/decrypt")
-def decrypt(c, d, n):
+@app.route("/decrypt", methods=['POST'])
+@cross_origin()
+def decrypt():
+
+    data = request.get_json()
+    pkey = data['values']['privateKey']
+    c = data['values']['message']
+    temp_pkey = pkey.split()
+    d = int(temp_pkey[0])
+    n = int(temp_pkey[1])
+    final = decrypt_handler(c, d, n)
+    print(final)
+    return final
+
+
+def decrypt_handler(c, d, n):
 
     temp_arr = c.split()
     arr = [eval(i) for i in temp_arr]
@@ -88,19 +103,50 @@ def decrypt(c, d, n):
     return decrypted
 
 
-@app.route("/textASCII")
-def textASCII(message):
-    
-    temp_asciichar = [ord(c) for c in message]
-    asciichar = ' '.join(str(k) for k in temp_asciichar)
+
+
+
+@app.route("/textASCII", methods=['POST'])
+@cross_origin()
+def textASCII():
+
+    data = request.get_json()
+    temp_msg = data['values']
+    msg = temp_msg.get('message')
+    print(msg)
+    temp_asciichar = []
+    for c in msg:
+        try:
+            temp_asciichar.append(int(c))
+        except ValueError:
+            pass
+    print(temp_asciichar)
+    first_temp_asciichar = [str(m) for m in temp_asciichar]
+    second_temp_asciichar = [ord(h) for h in first_temp_asciichar]
+    asciichar = ' '.join(str(k) for k in second_temp_asciichar)
+    print(asciichar)
     return asciichar
 
 
-@app.route("/ASCIItext")
-def ASCIItext(message):
+@app.route("/ASCIItext", methods=['POST'])
+@cross_origin()
+def ASCIItext():
 
-    temp_textchar = [chr(c) for c in message]
-    textchar = ' '.join(str(k) for k in temp_textchar)
+    data = request.get_json()
+    temp_msg = data['values']
+    msg = temp_msg.get('message')
+    msg = msg.split()
+    print(msg)
+    temp_textchar = []
+    for c in msg:
+        try:
+            temp_textchar.append(int(c))
+        except ValueError:
+            pass
+    print(temp_textchar)
+    first_temp_textchar = [chr(h) for h in temp_textchar]
+    textchar = ' '.join(first_temp_textchar)
+    print(textchar)
     return textchar
 
 

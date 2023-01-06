@@ -12,14 +12,14 @@ const DecryptDataForm = () => {
     },
     onSubmit: (values) => {
       console.log(values);
-      fetch('http://127.0.0.1:5000/encrypt', {
+      fetch('http://127.0.0.1:5000/decrypt', {
             method: 'POST',
             mode: 'cors',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              message: values,
+              values
             }),
           })
           .then(response => console.log(JSON.stringify(response)))
