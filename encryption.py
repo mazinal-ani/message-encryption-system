@@ -118,15 +118,12 @@ def textASCII():
     print(msg)
     temp_asciichar = []
     for c in msg:
-        try:
-            temp_asciichar.append(int(c))
-        except ValueError:
-            pass
+        temp_asciichar.append(c)
     print(temp_asciichar)
-    first_temp_asciichar = [str(m) for m in temp_asciichar]
-    second_temp_asciichar = [ord(h) for h in first_temp_asciichar]
-    asciichar = ' '.join(str(k) for k in second_temp_asciichar)
-    print(asciichar)
+    first_temp_asciichar = [ord(h) for h in temp_asciichar]
+    asciichar = ' '.join(str(k) for k in first_temp_asciichar)
+    asciichar = "Your Message in ASCII Characters is: "+asciichar+"."
+    asciichar = jsonify(asciichar)
     return asciichar
 
 
@@ -147,8 +144,9 @@ def ASCIItext():
             pass
     print(temp_textchar)
     first_temp_textchar = [chr(h) for h in temp_textchar]
-    textchar = ' '.join(first_temp_textchar)
-    print(textchar)
+    textchar = ''.join(first_temp_textchar)
+    textchar = "Your Message in Alphanumeric Characters is: "+textchar+"."
+    textchar = jsonify(textchar)
     return textchar
 
 

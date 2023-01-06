@@ -1,9 +1,11 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { useFormik } from "formik";
 import './stylesheet.css';
 
 
 const TextASCII = () => {
+
+  const [responseData, setResponseData] = useState(null);
 
   const formik = useFormik({
     initialValues: {
@@ -21,13 +23,15 @@ const TextASCII = () => {
               values,
             }),
           })
-          .then(response => console.log(JSON.stringify(response)))
+          .then(response => response.json())
+          .then(data => setResponseData(JSON.stringify(data)))
           }
     }
   );
 
   return(
-    <form onSubmit={formik.handleSubmit}>
+    <div>
+      <form onSubmit={formik.handleSubmit}>
       <div>
         <label htmlFor='message'>
           Message: 
@@ -41,7 +45,16 @@ const TextASCII = () => {
         />
       </div>
       <button type="submit">Submit</button>
-    </form>
+      </form>
+      {responseData === null ? (
+        <p>Loading data...</p>
+      ) : (
+        <div>
+          <p>Here is the data:</p>
+          <pre>{JSON.stringify(responseData)}</pre>
+        </div>
+      )}
+    </div>
   );
 };
 
