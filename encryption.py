@@ -59,7 +59,8 @@ def encrypt():
     #public_key = request.form['public_key']
     #message = request.form['message']
     x = "HELLO"
-    return jsonify(x)
+    print(x)
+    return x
 
 #def encrypt(m, e, n):
 

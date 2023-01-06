@@ -1,71 +1,61 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import './stylesheet.css';
 
-const DecryptDataForm = () => (
-  <>
-    <h1 className='form_descriptions'>Using a Ciphertext Message</h1>
-    <Formik
-      initialValues={{ privateKey: "", message: "", acceptedTerms: false }}
-      validate={(values) => {
-        const errors = {};
-        if (!values.privateKey) {
-          errors.privateKey = "Required";
-        }
 
-        if (!values.acceptedTerms) {
-          errors.acceptedTerms =
-            "You must accept the terms and conditions before you proceed.";
-        }
+const DecryptDataForm = () => {
 
-        if (!values.message) {
-          errors.message = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.message)
-        ) {
-          errors.message = "Invalid message";
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        // post data to server
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }}
-    >
-      {({ isSubmitting, dirty, handleReset }) => (
-        <Form>
-          <div className='field_padding'>
-            <label className='inner_field_padding'>
-              Private Key:
-            </label>
-            <Field type="text" name="Private Key" />
-            <ErrorMessage name="Private Key" component="span" />
-          </div>
-          <div className='field_padding'>
-            <label className='inner_field_padding' htmlFor="Message">Message:</label>
-            <Field type="text" name="Message" style={{ height: 150 }}/>
-            <ErrorMessage name="Message" component="span" />
-          </div>
-          <div className='field_padding'>
-            <label className='inner_field_padding' >Accept Terms:</label>
-            <Field type="checkbox" name="acceptedTerms" />
-            <ErrorMessage name="acceptedTerms" component="span" />
-          </div>
-          <button
-            type="button"
-            onClick={handleReset}
-            disabled={!dirty || isSubmitting}
-          >
-            Reset
-          </button>
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
-        </Form>
-      )}
-    </Formik>
-  </>
-);
+  const formik = useFormik({
+    initialValues: {
+      privateKey: '',
+      message: '',
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      fetch('http://127.0.0.1:5000/encrypt', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              message: values,
+            }),
+          })
+          .then(response => console.log(JSON.stringify(response)))
+          }
+    }
+  );
 
-export default DecryptDataForm;
+  return(
+    <form onSubmit={formik.handleSubmit}>
+      <div>
+        <label htmlFor='privateKey'>
+          Private Key: 
+        </label>
+        <input 
+        id="privateKey"
+        name="privateKey"
+        type="privateKey"
+        onChange={formik.handleChange}
+        value={formik.values.privateKey}
+        />
+      </div>
+      <div>
+        <label htmlFor='message'>
+          Message: 
+        </label>
+        <input 
+        id="message"
+        name="message"
+        type="message"
+        onChange={formik.handleChange}
+        value={formik.values.message}
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default DecryptDataForm
