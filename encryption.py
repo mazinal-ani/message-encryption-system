@@ -89,7 +89,8 @@ def decrypt():
     d = int(temp_pkey[0])
     n = int(temp_pkey[1])
     final = decrypt_handler(c, d, n)
-    print(final)
+    final = "Your Decrypted Message is: "+final+"."
+    final = jsonify(final)
     return final
 
 

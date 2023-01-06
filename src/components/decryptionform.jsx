@@ -1,9 +1,11 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { useFormik } from "formik";
 import './stylesheet.css';
 
 
 const DecryptDataForm = () => {
+
+  const [responseData, setResponseData] = useState(null);
 
   const formik = useFormik({
     initialValues: {
@@ -22,14 +24,15 @@ const DecryptDataForm = () => {
               values
             }),
           })
-          .then(response => console.log(JSON.stringify(response)))
-          .then
+          .then(response => response.json())
+          .then(data => setResponseData(JSON.stringify(data)))
           }
     }
   );
 
   return(
-    <form onSubmit={formik.handleSubmit}>
+    <div>
+      <form onSubmit={formik.handleSubmit}>
       <div>
         <label htmlFor='privateKey'>
           Private Key: 
@@ -55,7 +58,16 @@ const DecryptDataForm = () => {
         />
       </div>
       <button type="submit">Submit</button>
-    </form>
+      </form>
+      {responseData === null ? (
+        <p>Loading data...</p>
+      ) : (
+        <div>
+          <p>Here is the data:</p>
+          <pre>{JSON.stringify(responseData)}</pre>
+        </div>
+      )}
+    </div>
   );
 };
 
