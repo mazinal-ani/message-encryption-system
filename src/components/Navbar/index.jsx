@@ -1,5 +1,5 @@
 import React from "react";
-
+import { UserAuth } from "../../context/AuthContext";
 import {
     Nav,
     NavLogo,
@@ -11,6 +11,17 @@ import {
 } from "./NavbarElements";
 
 const Navbar = () => {
+
+    const { user, logOut } = UserAuth()
+
+    const handleSignOut = async () => {
+        try {
+            await logOut()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <Nav>
@@ -44,7 +55,7 @@ const Navbar = () => {
                         Contact
                     </NavLink>
                     <NavBtn>
-                        <NavBtnLink to="/sign-in">Sign In</NavBtnLink>
+                        {user?.displayName ? <button onClick={handleSignOut}>Sign Out</button> : <NavBtnLink to="/sign-in">Sign In</NavBtnLink>}
                     </NavBtn>
                 </NavMenu>
             </Nav> 
