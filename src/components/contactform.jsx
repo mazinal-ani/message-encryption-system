@@ -175,43 +175,49 @@ const DataForm = () => {
         <label htmlFor='name'>
           Name: 
         </label>
-        <textarea
-        id="name"
-        rows="1"
-        name="name"
-        type="name"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-        />
-        {formik.touched.name && formik.errors.name && (<div>{formik.errors.name}</div>)}
+        <div className='form_field_small'>
+          <textarea
+          id="name"
+          rows="1"
+          name="name"
+          type="name"
+          onChange={formik.handleChange}
+          value={formik.values.name}
+          />
+          {formik.touched.name && formik.errors.name && (<div>{formik.errors.name}</div>)}
+        </div>
       </div>
       <div className='form_field'>
         <label htmlFor='name'>
           Email: 
         </label>
-        <textarea
-        id="email"
-        rows="1"
-        name="email"
-        type="email"
-        onChange={formik.handleChange}
-        value={formik.values.email}
-        />
-        {formik.touched.email && formik.errors.email && (<div>{formik.errors.email}</div>)}
+        <div className='form_field_contact'>
+          <textarea
+          id="email"
+          rows="1"
+          name="email"
+          type="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          />
+          {formik.touched.email && formik.errors.email && (<div>{formik.errors.email}</div>)}
+        </div>
       </div>
       <div className='form_field'>
         <label htmlFor='message'>
           Message: 
         </label>
-        <textarea 
-        id="message"
-        rows="10"
-        name="message"
-        type="message"
-        onChange={formik.handleChange}
-        value={formik.values.message}
-        />
-        {formik.touched.message && formik.errors.message && (<div>{formik.errors.message}</div>)}
+        <div className='form_field_contact'>
+          <textarea 
+          id="message"
+          rows="10"
+          name="message"
+          type="message"
+          onChange={formik.handleChange}
+          value={formik.values.message}
+          />
+          {formik.touched.message && formik.errors.message && (<div>{formik.errors.message}</div>)}
+        </div>
       </div>
       <button type="submit">Submit</button>
       <button onClick={formik.handleReset}>Reset</button>

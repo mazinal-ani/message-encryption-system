@@ -31,19 +31,6 @@
     margin-bottom: 1rem;
 }
 
-.field_padding_checkbox{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.field_padding_checkbox label{
-    margin-right: 0.6rem;
-}
-
-.terms_msg {
-    margin-left: 1.2rem;
-}
-
 .inner_field_padding{
     margin-right: 0.5rem;
 }
@@ -81,7 +68,7 @@
 
 .form_field_small {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .form_field_small label {
@@ -101,6 +88,7 @@
 .form_field_contact {
     display: flex;
     flex-direction: row;
+    
 }
 
 .form_field_contact textarea {
