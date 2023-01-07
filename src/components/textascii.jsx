@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import Typed from "react-typed";
 import { useFormik } from "formik";
 import './stylesheet.css';
 
@@ -32,13 +33,14 @@ const TextASCII = () => {
   return(
     <div>
       <form onSubmit={formik.handleSubmit}>
-      <div>
+      <div className='form_field'>
         <label htmlFor='message'>
           Message: 
         </label>
-        <input 
+        <textarea
         id="message"
         name="message"
+        rows="10"
         type="message"
         onChange={formik.handleChange}
         value={formik.values.message}
@@ -46,14 +48,20 @@ const TextASCII = () => {
       </div>
       <button type="submit">Submit</button>
       </form>
-      {responseData === null ? (
-        <p>Loading data...</p>
-      ) : (
-        <div>
-          <p>Here is the data:</p>
-          <pre>{JSON.stringify(responseData)}</pre>
-        </div>
-      )}
+      <div className='field_padding'>
+        {responseData === null ? (
+          <Typed
+          strings={["Awaiting input..."]}
+          typeSpeed={25}
+          backSpeed={10}
+          loop/>
+        ) : (
+          <div>
+            <h1 className='field_padding'>Here is your message encoded using ASCII:</h1>
+            <h1 className='form_descriptions'>{responseData.replace(/^"|"$/g, '')}</h1>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

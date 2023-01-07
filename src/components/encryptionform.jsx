@@ -34,24 +34,26 @@ const DataForm = () => {
   return(
     <div>
       <form onSubmit={formik.handleSubmit}>
-      <div>
+      <div className='form_field'>
         <label htmlFor='publicKey'>
           Public Key: 
         </label>
-        <input 
+        <textarea
         id="publicKey"
+        rows="1"
         name="publicKey"
         type="publicKey"
         onChange={formik.handleChange}
         value={formik.values.publicKey}
         />
       </div>
-      <div>
+      <div className='form_field'>
         <label htmlFor='message'>
           Message: 
         </label>
-        <input 
+        <textarea 
         id="message"
+        rows="10"
         name="message"
         type="message"
         onChange={formik.handleChange}

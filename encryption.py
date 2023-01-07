@@ -19,8 +19,8 @@ def make_key():
             p += 1
         return p
 
-    p = generate_random_prime(2**500, 2**506 - 1)
-    q = generate_random_prime(2**506, 2**512)
+    p = generate_random_prime(2, 1024)
+    q = generate_random_prime(1031, 2**20)
 
     n = p * q
 
@@ -89,7 +89,6 @@ def decrypt():
     d = int(temp_pkey[0])
     n = int(temp_pkey[1])
     final = decrypt_handler(c, d, n)
-    final = "Your Decrypted Message is: "+final+"."
     final = jsonify(final)
     return final
 
@@ -122,7 +121,6 @@ def textASCII():
     print(temp_asciichar)
     first_temp_asciichar = [ord(h) for h in temp_asciichar]
     asciichar = ' '.join(str(k) for k in first_temp_asciichar)
-    asciichar = "Your Message in ASCII Characters is: "+asciichar+"."
     asciichar = jsonify(asciichar)
     return asciichar
 
@@ -145,7 +143,6 @@ def ASCIItext():
     print(temp_textchar)
     first_temp_textchar = [chr(h) for h in temp_textchar]
     textchar = ''.join(first_temp_textchar)
-    textchar = "Your Message in Alphanumeric Characters is: "+textchar+"."
     textchar = jsonify(textchar)
     return textchar
 

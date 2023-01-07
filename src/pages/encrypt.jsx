@@ -33,7 +33,7 @@ const EncryptionPage = () => {
       <div>
         <h1 className='title_text'>Public/Private Key Generator</h1>
         <button onClick={handleClick}>Generate</button>
-        {responseData ? <h1 className='key_text'>{JSON.stringify(responseData)}</h1> : null}
+        {responseData ? <h1 className='key_text'>{responseData.replace(/"/g, '')}</h1> : null}
       </div>
       <hr className='bottom_line'/>
       <h1 className='bottom_copyright'>Made by Mazin Al-Ani, 2023. CS Student at the University of Waterloo.</h1>

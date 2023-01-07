@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import Typed from 'react-typed';
 import { useFormik } from "formik";
 import './stylesheet.css';
 
@@ -33,11 +34,11 @@ const DecryptDataForm = () => {
   return(
     <div>
       <form onSubmit={formik.handleSubmit}>
-      <div>
+      <div className='form_field'>
         <label htmlFor='privateKey'>
           Private Key: 
         </label>
-        <input 
+        <textarea 
         id="privateKey"
         name="privateKey"
         type="privateKey"
@@ -45,13 +46,14 @@ const DecryptDataForm = () => {
         value={formik.values.privateKey}
         />
       </div>
-      <div>
+      <div className='form_field'>
         <label htmlFor='message'>
           Message: 
         </label>
-        <input 
+        <textarea
         id="message"
         name="message"
+        rows="10"
         type="message"
         onChange={formik.handleChange}
         value={formik.values.message}
@@ -59,14 +61,20 @@ const DecryptDataForm = () => {
       </div>
       <button type="submit">Submit</button>
       </form>
+      <div className='field_padding'>
       {responseData === null ? (
-        <p>Loading data...</p>
+        <Typed
+        strings={["Awaiting input..."]}
+        typeSpeed={25}
+        backSpeed={10}
+        loop/>
       ) : (
         <div>
-          <p>Here is the data:</p>
-          <pre>{JSON.stringify(responseData)}</pre>
+          <h1 className='field_padding'>Here is your decrypted message:</h1>
+          <h1 className='form_descriptions'>{responseData.replace(/"/g, '')}</h1>
         </div>
       )}
+      </div>
     </div>
   );
 };
