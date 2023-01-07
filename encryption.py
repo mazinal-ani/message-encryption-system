@@ -1,8 +1,7 @@
 import random
 import math
-import json
 from sympy import isprime, mod_inverse
-from flask import Flask, request, make_response, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)

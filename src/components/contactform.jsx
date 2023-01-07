@@ -130,9 +130,30 @@ const DataForm = () => {
       email: '',
       message: '',
     },
+    
+    validate: (values) => {
+      const errors = {};
+      if (!values.name) {
+        errors.name = "Name is required.";
+      }
+
+      if (!values.email) {
+        errors.email = "Required";
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+      ) {
+        errors.email = "Invalid email address";
+      }
+
+      if (!values.message) {
+        errors.message = "Message is required.";
+      }
+      return errors;
+    },
+
     onSubmit: (values) => {
       console.log(values);
-      fetch('http://127.0.0.1:5000/encrypt', {
+      fetch('http://127.0.0.1:5001/submit', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -145,8 +166,7 @@ const DataForm = () => {
           .then(response => response.json())
           .then(data => setResponseData(JSON.stringify(data)))
           }
-    }
-  );
+    });
 
   return(
     <div>
@@ -163,6 +183,7 @@ const DataForm = () => {
         onChange={formik.handleChange}
         value={formik.values.name}
         />
+        {formik.touched.name && formik.errors.name && (<div>{formik.errors.name}</div>)}
       </div>
       <div className='form_field'>
         <label htmlFor='name'>
@@ -176,6 +197,7 @@ const DataForm = () => {
         onChange={formik.handleChange}
         value={formik.values.email}
         />
+        {formik.touched.email && formik.errors.email && (<div>{formik.errors.email}</div>)}
       </div>
       <div className='form_field'>
         <label htmlFor='message'>
@@ -189,20 +211,14 @@ const DataForm = () => {
         onChange={formik.handleChange}
         value={formik.values.message}
         />
+        {formik.touched.message && formik.errors.message && (<div>{formik.errors.message}</div>)}
       </div>
       <button type="submit">Submit</button>
       <button onClick={formik.handleReset}>Reset</button>
       </form>
       <div className='field_padding'>
-      {responseData === null ? (
-        <Typed
-        strings={["Awaiting input..."]}
-        typeSpeed={25}
-        backSpeed={10}
-        loop/>
-      ) : (
+      {responseData === null ? (null) : (
         <div>
-          <h1 className='field_padding'>Here is your encrypted message:</h1>
           <h1 className='form_descriptions'>{responseData.replace(/"/g, '')}</h1>
         </div>
       )}

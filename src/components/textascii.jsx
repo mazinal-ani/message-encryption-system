@@ -46,6 +46,7 @@ const TextASCII = () => {
         value={formik.values.message}
         />
       </div>
+      <button onClick={formik.handleReset}>Reset</button>
       <button type="submit">Submit</button>
       </form>
       <div className='field_padding'>
