@@ -4,7 +4,6 @@ import Home from "./home";
 import ContactPage from "./contact";
 import ASCIIPage from "./ascii"
 import EncryptionPage from "./encrypt";
-import SignInPage from "./signin";
 import { AuthContextProvider } from "../context/AuthContext";
 
 function Index() {
@@ -16,13 +15,12 @@ function Index() {
         <AuthContextProvider>
 
           <Navbar/>
-          
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/encryption" element={<EncryptionPage />} />
             <Route path="/ascii" element={<ASCIIPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/sign-in" element={<SignInPage />} />
           </Routes>
 
         </AuthContextProvider>

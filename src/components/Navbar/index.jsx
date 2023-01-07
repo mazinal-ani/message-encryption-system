@@ -22,6 +22,17 @@ const Navbar = () => {
         }
     }
 
+    const{ googleSignIn } = UserAuth()
+
+    const handleGoogleSignIn = async () => {
+        try {
+        await googleSignIn()
+        } catch (error) {
+        console.log(error)
+        }
+    }
+
+
     return (
         <>
             <Nav>
@@ -55,7 +66,7 @@ const Navbar = () => {
                         Contact
                     </NavLink>
                     <NavBtn>
-                        {user?.displayName ? <button onClick={handleSignOut}>Sign Out</button> : <NavBtnLink to="/sign-in">Sign In</NavBtnLink>}
+                        {user?.displayName ? <button onClick={handleSignOut}>Sign Out</button> : <button onClick={handleGoogleSignIn}>Sign In</button>}
                     </NavBtn>
                 </NavMenu>
             </Nav> 
