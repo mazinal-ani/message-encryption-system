@@ -16,6 +16,12 @@
     font-size: 1.2rem;
 }
 
+.form_descriptions_msg{
+    color: #39e75f;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
 .link_text{
     color: #4adede;
 }
@@ -23,6 +29,19 @@
 .field_padding{
     margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+.field_padding_checkbox{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.field_padding_checkbox label{
+    margin-right: 0.6rem;
+}
+
+.terms_msg {
+    margin-left: 1.2rem;
 }
 
 .inner_field_padding{
@@ -38,6 +57,8 @@
     margin-right: 1rem;
 }
 
+
+
 .form_field {
     display: flex;
     flex-direction: column;
@@ -45,6 +66,7 @@
 
 .form_field label {
     align-self: flex-start;
+    margin-bottom: 0.7rem;
 }
 
 .form_field textarea {
@@ -53,9 +75,40 @@
     /*background-color: #4adede;*/
 }
 
-.form_field label {
+
+
+
+
+.form_field_small {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_field_small label {
+    align-self: flex-start;
     margin-bottom: 0.7rem;
 }
+
+.form_field_small textarea {
+    width: 14%;
+    margin-bottom: 1.5rem;
+    margin-right: 1.2rem;
+    /*background-color: #4adede;*/
+}
+
+
+
+.form_field_contact {
+    display: flex;
+    flex-direction: row;
+}
+
+.form_field_contact textarea {
+    margin-right: 1.2rem;
+}
+
+
+
 
 button {
     border-radius: 8px;
