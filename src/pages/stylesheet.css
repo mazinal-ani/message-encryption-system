@@ -94,6 +94,10 @@ body {
   align-text: top;
 }
 
+.key_button_padding{
+  margin-bottom: 1.3rem;
+}
+
 .title_image {
   z-index: 0;
   opacity: 0.7;
@@ -118,6 +122,17 @@ body {
   color: #39e75f;
   margin-top:1rem;
   margin-bottom:1rem;
+}
+
+.saved_key_title_text{
+  color: #4adede;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.saved_key_text{
+  color: #39e75f;
+  font-size: 1.6rem;
 }
 
 button {

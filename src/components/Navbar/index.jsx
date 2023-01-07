@@ -17,6 +17,7 @@ const Navbar = () => {
     const handleSignOut = async () => {
         try {
             await logOut()
+            window.location.reload()
         } catch (error) {
             console.log(error)
         }
@@ -26,7 +27,8 @@ const Navbar = () => {
 
     const handleGoogleSignIn = async () => {
         try {
-        await googleSignIn()
+        await googleSignIn().then(() => {
+            window.location.assign('/')})
         } catch (error) {
         console.log(error)
         }
