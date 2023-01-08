@@ -13,6 +13,29 @@ const DataForm = () => {
       publicKey: '',
       message: '',
     },
+  
+    validate: (values) => {
+      const errors = {};
+      if (!values.publicKey) {
+        errors.publicKey = "Required";
+      } else if (
+        !/^[0-9]+\s[0-9]+$/.test(values.publicKey)
+      ) {
+        errors.publicKey = "Invalid Public Key. Please Enter As: <X Y> where X is the first number and Y is the second in the key.";
+      }
+
+      if (!values.message) {
+        errors.message = "Message is required.";
+      } else if (
+        !/^[0-9\s]+$/.test(values.message)
+      ) {
+        errors.message = "Invalid Message. Please enter as numbers followed separated by spaces.";
+      }
+
+
+      return errors;
+    },
+  
     onSubmit: (values) => {
       console.log(values);
       fetch('http://127.0.0.1:5000/encrypt', {
@@ -46,6 +69,7 @@ const DataForm = () => {
         onChange={formik.handleChange}
         value={formik.values.publicKey}
         />
+        {formik.touched.publicKey && formik.errors.publicKey && (<div>{formik.errors.publicKey}</div>)}
       </div>
       <div className='form_field'>
         <label htmlFor='message'>
@@ -59,6 +83,7 @@ const DataForm = () => {
         onChange={formik.handleChange}
         value={formik.values.message}
         />
+        {formik.touched.message && formik.errors.message && (<div>{formik.errors.message}</div>)}
       </div>
       <button onClick={formik.handleReset}>Reset</button>
       <button type="submit">Submit</button>

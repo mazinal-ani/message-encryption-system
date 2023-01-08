@@ -12,21 +12,22 @@ const TextASCII = () => {
     initialValues: {
       message: '',
     },
-    onSubmit: (values) => {
-      console.log(values);
-      fetch('http://127.0.0.1:5000/textASCII', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              values,
-            }),
-          })
-          .then(response => response.json())
-          .then(data => setResponseData(JSON.stringify(data)))
-          }
+
+  onSubmit: (values) => {
+    console.log(values);
+    fetch('http://127.0.0.1:5000/textASCII', {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            values,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => setResponseData(JSON.stringify(data)))
+        }
     }
   );
 

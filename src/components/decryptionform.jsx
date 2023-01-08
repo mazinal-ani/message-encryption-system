@@ -13,6 +13,28 @@ const DecryptDataForm = () => {
       privateKey: '',
       message: '',
     },
+
+    validate: (values) => {
+      const errors = {};
+      if (!values.privateKey) {
+        errors.privateKey = "Required";
+      } else if (
+        !/^[0-9]+\s[0-9]+$/.test(values.privateKey)
+      ) {
+        errors.privateKey = "Invalid Public Key. Please Enter As: <X Y> where X is the first number and Y is the second in the key.";
+      }
+
+      if (!values.message) {
+        errors.message = "Message is required.";
+      } else if (
+        !/^[0-9\s]+$/.test(values.message)
+      ) {
+        errors.message = "Invalid Message. Please enter as numbers followed separated by spaces.";
+      }
+
+      return errors;
+    },
+
     onSubmit: (values) => {
       console.log(values);
       fetch('http://127.0.0.1:5000/decrypt', {
@@ -42,9 +64,11 @@ const DecryptDataForm = () => {
         id="privateKey"
         name="privateKey"
         type="privateKey"
+        rows="1"
         onChange={formik.handleChange}
         value={formik.values.privateKey}
         />
+        {formik.touched.privateKey && formik.errors.privateKey && (<div>{formik.errors.privateKey}</div>)}
       </div>
       <div className='form_field'>
         <label htmlFor='message'>
@@ -58,6 +82,7 @@ const DecryptDataForm = () => {
         onChange={formik.handleChange}
         value={formik.values.message}
         />
+        {formik.touched.message && formik.errors.message && (<div>{formik.errors.message}</div>)}
       </div>
       <button onClick={formik.handleReset}>Reset</button>
       <button type="submit">Submit</button>

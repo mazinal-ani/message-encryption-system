@@ -12,6 +12,21 @@ const ASCIIText = () => {
     initialValues: {
       message: '',
     },
+
+    validate: (values) => {
+      const errors = {};
+
+      if (!values.message) {
+        errors.message = "Message is required.";
+      } else if (
+        !/^[0-9\s]+$/.test(values.message)
+      ) {
+        errors.message = "Invalid Message. Please enter as numbers followed separated by spaces.";
+      }
+
+      return errors;
+    },
+
     onSubmit: (values) => {
       console.log(values);
       fetch('http://127.0.0.1:5000/ASCIItext', {
@@ -45,6 +60,7 @@ const ASCIIText = () => {
         onChange={formik.handleChange}
         value={formik.values.message}
         />
+        {formik.touched.message && formik.errors.message && (<div>{formik.errors.message}</div>)}
       </div>
       <button onClick={formik.handleReset}>Reset</button>
       <button type="submit">Submit</button>
